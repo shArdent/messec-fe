@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "@/components/InputField";
 import { handleRegister } from "../../utils/auth";
 import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -17,23 +18,35 @@ const RegisterPage = () => {
   });
 
   const onSubmit = async (data: any) => {
-    const result = await handleRegister(data);
-    if (result.status == 400) {
-      setError("email", {
-        type: "manual",
-        message: "Email atau password anda salah",
-      });
-      setError("password", {
-        type: "manual",
-        message: "Email atau password anda salah",
-      });
-    }
+    try {
+      await handleRegister(data);
+    } catch (error) {
+      const statusCode = (error as AxiosError).status;
+      if (statusCode == 400) {
+        setError("email", {
+          type: "manual",
+          message: "Email atau password anda salah",
+        });
+        setError("password", {
+          type: "manual",
+          message: "Email atau password anda salah",
+        });
+      }
 
-    if (result.status == 500) {
-      setError("email", {
-        type: "manual",
-        message: "Terjadi kesalahan pada server",
-      });
+      if (statusCode == 500) {
+        setError("email", {
+          type: "manual",
+          message: "Terjadi kesalahan pada server",
+        });
+      }
+      if (statusCode == 404) {
+        setError("email", {
+          type: "manual",
+          message: "Terjadi kesalahan pada server",
+        });
+      }
+
+      return;
     }
 
     navigate("/auth/login");

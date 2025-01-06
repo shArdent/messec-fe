@@ -31,7 +31,7 @@ export type AuthFormData = {
 };
 
 export const UserSchema: ZodType<AuthFormData> = z.object({
-  email: z.string({ required_error: "Tidak boleh kosong" }).email(),
+  email: z.string({ required_error: "Tidak boleh kosong" }).email({message : "Email tidak valid"}),
   password: z
     .string({ required_error: "Tidak boleh kosong" })
     .min(8, { message: "Password terlalu pendek" }),
