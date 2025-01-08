@@ -4,6 +4,7 @@ import AuthLayout from "./pages/auth/AuthLayout";
 import LoginPage from "./pages/auth/Login";
 import RegisterPage from "./pages/auth/Register";
 import ProfileLayout from "./pages/profile/ProfileLayout";
+import PostPage from "./pages/PostPage";
 
 const Router = () => {
   return (
@@ -16,7 +17,7 @@ const Router = () => {
       </Route>
 
       <Route path="profile/:username" element={<ProfileLayout />}>
-        <Route path="post" />
+        <Route path="post" element={<PostPage />} />
         <Route path="qna" />
       </Route>
     </Routes>
