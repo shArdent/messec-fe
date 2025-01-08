@@ -1,6 +1,8 @@
 import { FormState } from "react-hook-form";
 import { AuthFormData } from "../types";
 import axiosIntance from "./axios";
+import { useNavigate } from "react-router";
+
 
 export const handleRegister = async (
   data: AuthFormData,
@@ -23,7 +25,7 @@ export const handleLogin = async (
     sessionStorage.setItem("userId", data.data.id);
     sessionStorage.setItem("email", data.data.email);
 
-    navigate("/");
+    navigate(`/profile/${data.data.id}/post`);
   } catch (error) {
     console.log(error);
   }

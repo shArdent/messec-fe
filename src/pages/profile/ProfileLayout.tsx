@@ -12,7 +12,7 @@ const ProfileLayout = () => {
         <div className="flex gap-7">
           <img src={avatar} alt="Avatar" width={100} />
           <div className="flex flex-col gap-2 py-2">
-            <h1 className="font-semibold">twxandna</h1>
+            <h1 className="text-xl font-semibold">twxandna</h1>
             <p className="text-[#686D76] text-sm font-light">bio singkat</p>
             <p className="text-[#686D76] text-sm font-light">email@gmail.com</p>
           </div>
