@@ -4,13 +4,15 @@ import { NavLink, Outlet, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
 import Loader from "../../components/Loader";
 import { useEffect, useState } from "react";
+import ErrorPage from "../ErrorPage";
 
 const ProfileLayout = () => {
   const { username } = useParams();
   const [userData, setUserData] = useState<any>(null);
-  const { data, isError, isPending, error } = useQuery({
+  const { data, isError, isPending } = useQuery({
     queryKey: ["user"],
     queryFn: () => getUserData(username ?? ""),
+    retry: false,
   });
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const ProfileLayout = () => {
     console.log(data?.data.data);
   }, [data]);
 
-  if (isError) return <h1>Error </h1>;
+  if (isError) return <ErrorPage code={"505"} />;
 
   if (isPending) return <Loader />;
 
