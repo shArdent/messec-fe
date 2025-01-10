@@ -1,8 +1,8 @@
 import TextAreaPost from "@/components/TextAreaPost";
 import PostCard from "@/components/PostCard";
 import useIsUserLogin from "../hooks/UseIsLogin";
-import { useQuery } from "@tanstack/react-query";
-import { getUserPost } from "../utils/fetch";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getUserPost, postUserPost } from "../utils/fetch";
 import Loader from "../components/Loader";
 import { useEffect, useState } from "react";
 import { PostData } from "../types";
@@ -12,7 +12,7 @@ const PostPage = () => {
   const { isUserLogin, username } = useIsUserLogin();
   const [postsData, setPostsData] = useState<PostData[] | null>(null);
   const { data, isError, isPending } = useQuery({
-    queryKey: ["post"],
+    queryKey: ["post", username],
     queryFn: () => getUserPost(username ?? ""),
   });
 
@@ -20,9 +20,9 @@ const PostPage = () => {
     setPostsData(data?.data.data);
   }, [data]);
 
-  if (isError) return <ErrorPage code={"500"} />;
-
   if (isPending) return <Loader />;
+
+  if (isError) return <ErrorPage code={"500"} />;
 
   return (
     <div className="flex flex-col gap-7">

@@ -12,6 +12,7 @@ const axiosIntance = axios.create(defaultOptions);
 axiosIntance.interceptors.request.use((config) => {
   const token = sessionStorage.getItem("token");
   config.headers.Authorization = token ? `Bearer ${token}` : "";
+
   return config;
 });
 

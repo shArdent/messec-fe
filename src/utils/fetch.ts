@@ -7,3 +7,8 @@ export const getUserPost = (username: string) => {
 export const getUserData = (username: string) => {
   return axiosIntance.get(`/user/${username}`);
 };
+
+// add new post to a user
+export const postUserPost = (body: string) => {
+  return axiosIntance.post(`/post-mod`, { body });
+};
