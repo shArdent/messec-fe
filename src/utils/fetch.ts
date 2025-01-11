@@ -12,3 +12,13 @@ export const getUserData = (username: string) => {
 export const postUserPost = (body: string) => {
   return axiosIntance.post(`/post-mod`, { body });
 };
+
+type commentPayload = {
+  body: string;
+  postId: number;
+};
+export const postComment = (payload: commentPayload) => {
+  return axiosIntance.post(`/comment/${payload.postId}`, {
+    body: payload.body,
+  });
+};

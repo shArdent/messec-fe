@@ -12,7 +12,9 @@ const PostCard = ({ data }: { data: PostData }) => {
         </div>{" "}
         <p className="text-sm md:text-base">{data.PostBody}</p>
       </div>
-      {data.Comments && <CommentContainer comments={data.Comments} />}
+      {data.Comments && (
+        <CommentContainer comments={data.Comments} postId={data.PostId} />
+      )}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import TextAreaPost from "@/components/TextAreaPost";
 import PostCard from "@/components/PostCard";
 import useIsUserLogin from "../hooks/UseIsLogin";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUserPost, postUserPost } from "../utils/fetch";
+import { useQuery } from "@tanstack/react-query";
+import { getUserPost } from "../utils/fetch";
 import Loader from "../components/Loader";
 import { useEffect, useState } from "react";
 import { PostData } from "../types";
