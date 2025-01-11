@@ -4,8 +4,13 @@ import { Link, NavLink, Outlet, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
 import Loader from "../../components/Loader";
 import ErrorPage from "../ErrorPage";
+import { useCurrentProfileStore } from "../../store";
 
 const ProfileLayout = () => {
+  const updateProfileEmail = useCurrentProfileStore((state) => state.setEmail);
+  const updateProfileUsername = useCurrentProfileStore(
+    (state) => state.setUsername,
+  );
   const { username } = useParams();
   const currentUser = sessionStorage.getItem("userId");
   const { data, isError, isPending } = useQuery({
@@ -19,6 +24,10 @@ const ProfileLayout = () => {
 
   const userData = data?.data.data;
 
+  if (userData) {
+    updateProfileUsername(userData?.Username ?? userData.Email);
+    updateProfileEmail(userData?.Email);
+  }
   if (isError || !userData) return <ErrorPage code={"404"} />;
 
   if (isPending) return <Loader />;

@@ -54,3 +54,33 @@ export type PostData = {
   PostUserId: number;
   Comments?: CommentData[];
 };
+
+export type CommentReq = {
+  body: string;
+  postId: number;
+};
+
+export type QuestionReq = {
+  userId: string;
+  body?: string;
+};
+
+export type AnswerRes = {
+  Id: number;
+  QuestionId: number;
+  AnswerBody: string;
+  CreatedAt: string;
+};
+
+export type AnswerReq = {
+  body: string;
+  questionId: number;
+};
+
+export type QuestionRes = {
+  Id: number;
+  UserId: number;
+  Body: string;
+  CreatedAt: string;
+  Answer?: AnswerRes;
+};

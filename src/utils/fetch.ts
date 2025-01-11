@@ -1,3 +1,4 @@
+import { AnswerReq, CommentReq, QuestionReq } from "../types";
 import axiosIntance from "./axios";
 
 export const getUserPost = (username: string) => {
@@ -13,12 +14,24 @@ export const postUserPost = (body: string) => {
   return axiosIntance.post(`/post-mod`, { body });
 };
 
-type commentPayload = {
-  body: string;
-  postId: number;
-};
-export const postComment = (payload: commentPayload) => {
+export const postComment = (payload: CommentReq) => {
   return axiosIntance.post(`/comment/${payload.postId}`, {
+    body: payload.body,
+  });
+};
+
+export const getUserQuestions = (payload: QuestionReq) => {
+  return axiosIntance.get(`/question/${payload.userId}`);
+};
+
+export const postUserQuestion = (payload: QuestionReq) => {
+  return axiosIntance.post(`/question/${payload.userId}`, {
+    body: payload.body,
+  });
+};
+
+export const postAnswer = (payload: AnswerReq) => {
+  return axiosIntance.post(`/answer/${payload.questionId}`, {
     body: payload.body,
   });
 };
