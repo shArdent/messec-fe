@@ -1,4 +1,3 @@
-import Example from "@/components/Example";
 import ErrorPage from "./pages/ErrorPage";
 
 function App() {

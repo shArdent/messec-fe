@@ -1,17 +1,22 @@
-import { FormState } from "react-hook-form";
+import { AxiosError } from "axios";
 import { AuthFormData } from "../types";
 import axiosIntance from "./axios";
-import { useNavigate } from "react-router";
-
 
 export const handleRegister = async (
   data: AuthFormData,
   setErrors: (name: string, error: { type: string; message: string }) => void,
   navigate: (path: string) => void,
 ) => {
-  const response = await axiosIntance.post("/auth/register", data);
+  try {
+    await axiosIntance.post("/auth/register", data);
+  } catch (err: any) {
+    const { error } = err.response.data;
 
-  return response;
+    setErrors("email", { type: "manual", message: error });
+    return;
+  }
+
+  navigate("/auth/login");
 };
 
 export const handleLogin = async (

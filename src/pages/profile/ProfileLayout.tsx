@@ -1,12 +1,13 @@
 import avatar from "@/assets/avatar.svg";
 import { useQuery } from "@tanstack/react-query";
-import { NavLink, Outlet, useParams } from "react-router";
+import { Link, NavLink, Outlet, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
 import Loader from "../../components/Loader";
 import ErrorPage from "../ErrorPage";
 
 const ProfileLayout = () => {
   const { username } = useParams();
+  const currentUser = sessionStorage.getItem("userId");
   const { data, isError, isPending } = useQuery({
     queryKey: ["user", username],
     queryFn: () => getUserData(username ?? ""),
@@ -25,7 +26,12 @@ const ProfileLayout = () => {
   return (
     <div className="w-full">
       <div className="h-20 flex justify-center items-center bg-[#91a9ff]">
-        <h1 className="text-white font-bold text-2xl">Secreto (boongan)</h1>
+        <Link
+          to={`/profile/${currentUser}/post`}
+          className="text-white font-bold text-2xl"
+        >
+          Secreto (boongan)
+        </Link>
       </div>
       <div className="w-full flex px-3 md:px-10 flex-col gap-8 py-7">
         <div className="flex gap-7">
