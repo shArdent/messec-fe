@@ -6,6 +6,7 @@ import ProfileLayout from "./pages/profile/ProfileLayout";
 import PostPage from "./pages/PostPage";
 import ErrorPage from "./pages/ErrorPage";
 import QnaPage from "./pages/QnaPage";
+import App from "./App";
 
 const Router = () => {
   const userLogin = sessionStorage.getItem("userId");
@@ -20,6 +21,7 @@ const Router = () => {
         }
       />
 
+      <Route path="test" element={<App />} />
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
