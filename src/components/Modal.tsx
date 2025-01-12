@@ -14,11 +14,11 @@ const Modal = ({
   console.log(isOpen);
   return (
     <div
-      className={`h-screen w-screen absolute top-0 left-0 z-3 justify-center items-center ${isOpen ? "flex" : "hidden"}`}
+      className={`h-full w-full fixed top-0 left-0 z-10 justify-center items-center ${isOpen ? "flex" : "hidden"}`}
     >
       <div className={"z-10 " + containerStyle}>{children}</div>
       <div
-        className={"h-screen w-screen bg-black opacity-75 z-5 absolute"}
+        className={"h-full w-full bg-black opacity-75 z-5 absolute"}
         onClick={() => closer(false)}
       ></div>
     </div>
