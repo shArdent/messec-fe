@@ -11,7 +11,6 @@ const Modal = ({
   isOpen: boolean;
   closer: (e: boolean) => void;
 }) => {
-  console.log(isOpen);
   return (
     <div
       className={`h-full w-full fixed top-0 left-0 z-10 justify-center items-center ${isOpen ? "flex" : "hidden"}`}

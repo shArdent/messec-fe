@@ -14,7 +14,9 @@ const PostCard = ({ data }: { data: PostData }) => {
             <img src={amplop} alt="amplop" width={50} />
             <p className="font-semibold">{data.PostCreatedAt.split(" ")[0]}</p>
           </div>
-          {isUserLogin && <PostCardMenu postId={data.PostId} username={username} />}
+          {isUserLogin && (
+            <PostCardMenu postId={data.PostId} username={username as string} />
+          )}
         </div>
         <p className="text-sm md:text-base">{data.PostBody}</p>
       </div>

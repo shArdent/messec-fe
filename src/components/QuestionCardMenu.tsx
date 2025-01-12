@@ -2,22 +2,22 @@ import { Trash } from "@phosphor-icons/react";
 import { useState } from "react";
 import Modal from "./Modal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteUserPost } from "../utils/fetch";
+import { deleteUserQuestion } from "../utils/fetch";
 
-const PostCardMenu = ({
+const QuestionCardMenu = ({
   username,
-  postId,
+  questionId,
 }: {
   username: string;
-  postId: number;
+  questionId: number;
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: deleteUserPost,
+    mutationFn: deleteUserQuestion,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["post", username] });
+      queryClient.invalidateQueries({ queryKey: ["question", username] });
       setIsOpen(false);
     },
     onError: () => {
@@ -37,11 +37,11 @@ const PostCardMenu = ({
         closer={setIsOpen}
         containerStyle="bg-white p-8 rounded flex flex-col gap-8"
       >
-        <h1>Anda yakin ingin menghapus post ini?</h1>
+        <h1>Anda yakin ingin menghapus pertanyaan ini?</h1>
         <div className="w-full flex justify-between items-center gap-3">
           <button
             className="w-full py-2 bg-[#91A9FF] text-white font-semibold rounded"
-            onClick={() => mutation.mutate({ postId: postId })}
+            onClick={() => mutation.mutate({ questionId })}
           >
             Ya
           </button>
@@ -57,4 +57,4 @@ const PostCardMenu = ({
   );
 };
 
-export default PostCardMenu;
+export default QuestionCardMenu;

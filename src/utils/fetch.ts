@@ -39,3 +39,7 @@ export const postAnswer = (payload: AnswerReq) => {
 export const deleteUserPost = (payload: { postId: number }) => {
   return axiosIntance.delete(`/post-mod/${payload.postId}`);
 };
+
+export const deleteUserQuestion = (payload: { questionId: number }) => {
+  return axiosIntance.delete(`/question/${payload.questionId}`);
+};
