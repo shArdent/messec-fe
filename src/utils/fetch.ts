@@ -2,7 +2,7 @@ import { AnswerReq, CommentReq, QuestionReq } from "../types";
 import axiosIntance from "./axios";
 
 export const getUserPost = (username: string) => {
-  return axiosIntance.get(`/post-get/user/${username}`);
+  return axiosIntance.get(`/posts/${username}`);
 };
 
 export const getUserData = (username: string) => {
@@ -11,39 +11,39 @@ export const getUserData = (username: string) => {
 
 // add new post to a user
 export const postUserPost = (body: string) => {
-  return axiosIntance.post(`/post-mod`, { body });
+  return axiosIntance.post(`/posts`, { body });
 };
 
 export const postComment = (payload: CommentReq) => {
-  return axiosIntance.post(`/comment/${payload.postId}`, {
+  return axiosIntance.post(`/comments/${payload.postId}`, {
     body: payload.body,
   });
 };
 
 export const getUserQuestions = (payload: QuestionReq) => {
-  return axiosIntance.get(`/question/${payload.userId}`);
+  return axiosIntance.get(`/questions/${payload.userId}`);
 };
 
 export const postUserQuestion = (payload: QuestionReq) => {
-  return axiosIntance.post(`/question/${payload.userId}`, {
+  return axiosIntance.post(`/questions/${payload.userId}`, {
     body: payload.body,
   });
 };
 
 export const postAnswer = (payload: AnswerReq) => {
-  return axiosIntance.post(`/answer/${payload.questionId}`, {
+  return axiosIntance.post(`/answers/${payload.questionId}`, {
     body: payload.body,
   });
 };
 
 export const deleteUserPost = (payload: { postId: number }) => {
-  return axiosIntance.delete(`/post-mod/${payload.postId}`);
+  return axiosIntance.delete(`/posts/${payload.postId}`);
 };
 
 export const deleteUserQuestion = (payload: { questionId: number }) => {
-  return axiosIntance.delete(`/question/${payload.questionId}`);
+  return axiosIntance.delete(`/questions/${payload.questionId}`);
 };
 
 export const deleteUserAnswer = (payload : { answerId : number}) => {
-    return axiosIntance.delete(`/answer/${payload.answerId}`)
+    return axiosIntance.delete(`/answers/${payload.answerId}`)
 }

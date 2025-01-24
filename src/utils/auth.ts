@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { AuthFormData } from "../types";
 import axiosIntance from "./axios";
 
