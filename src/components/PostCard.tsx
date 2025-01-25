@@ -12,16 +12,16 @@ const PostCard = ({ data }: { data: PostData }) => {
         <div className="flex justify-between items-center h-auto gap-4">
           <div className="flex justify-start items-center gap-4 h-auto">
             <img src={amplop} alt="amplop" width={50} />
-            <p className="font-semibold">{data.PostCreatedAt.split(" ")[0]}</p>
+            <p className="font-semibold">{data.created_at.split("T")[0]}</p>
           </div>
           {isUserLogin && (
-            <PostCardMenu postId={data.PostId} username={username as string} />
+            <PostCardMenu postId={data.id} username={username as string} />
           )}
         </div>
-        <p className="text-sm md:text-base">{data.PostBody}</p>
+        <p className="text-sm md:text-base">{data.body}</p>
       </div>
-      {data.Comments && (
-        <CommentContainer comments={data.Comments} postId={data.PostId} />
+      {data.comments && (
+        <CommentContainer comments={data.comments} postId={data.id} />
       )}
     </div>
   );

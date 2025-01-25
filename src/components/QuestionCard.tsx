@@ -12,16 +12,19 @@ const QuestionCard = ({ data }: { data: QuestionRes }) => {
         <div className="flex justify-between items-center h-auto">
           <div className="flex gap-4 justify-center items-center">
             <img src={amplop} alt="amplop" width={50} />
-            <p className="font-semibold">{data.CreatedAt.split(" ")[0]}</p>
+            <p className="font-semibold">{data.created_at.split("T")[0]}</p>
           </div>
           {isUserLogin && (
-            <QuestionCardMenu questionId={data.Id} username={username as string} />
+            <QuestionCardMenu
+              questionId={data.id}
+              username={username as string}
+            />
           )}
         </div>
-        <p className="text-sm md:text-base">{data.Body}</p>
+        <p className="text-sm md:text-base">{data.body}</p>
       </div>
-      {(data.Answer || isUserLogin) && (
-        <AnswerContainer answer={data.Answer ?? null} questionId={data.Id} />
+      {(data.answer || isUserLogin) && (
+        <AnswerContainer answer={data.answer ?? null} questionId={data.id} />
       )}
     </div>
   );

@@ -13,11 +13,11 @@ const AnswerBubble = ({ answer }: { answer: AnswerRes }) => {
       <div className="bg-gray-100 px-4 py-3 w-full rounded border-[0.5px] border-[#686D76] border-opacity-40">
         <div className="w-full flex justify-between items-center">
           <h1 className="font-semibold mb-2">{email}</h1>
-          {isUserLogin && <AnswerDeleteMenu answerId={answer.Id} username={username as string} />}
+          {isUserLogin && <AnswerDeleteMenu answerId={answer.id} username={username as string} />}
         </div>
-        <p className="text-sm md:text-base">{answer.AnswerBody}</p>
+        <p className="text-sm md:text-base">{answer.body}</p>
         <p className="text-xs md:text-sm text-right text-gray-500 mt-2">
-          {answer.CreatedAt.split(" ")[0]}
+          {answer.created_at.split(" ")[0]}
         </p>
       </div>
     </div>

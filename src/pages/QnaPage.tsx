@@ -19,7 +19,8 @@ const QnaPage = () => {
   });
 
   useEffect(() => {
-    setQuestionsData(data?.data.data);
+    setQuestionsData(data?.data.questions);
+    console.log(data);
   }, [data]);
 
   if (isPending) return <Loader />;
@@ -28,7 +29,9 @@ const QnaPage = () => {
 
   return (
     <div className="flex flex-col gap-7">
-      {!isUserLogin && <TextAreaQuestion label="Apa yang ingin kamu ungkapkan?" />}
+      {!isUserLogin && (
+        <TextAreaQuestion label="Apa yang ingin kamu ungkapkan?" />
+      )}
       {questionsData?.map((question: QuestionRes, i) => {
         return <QuestionCard data={question} key={i} />;
       })}

@@ -17,7 +17,8 @@ const PostPage = () => {
   });
 
   useEffect(() => {
-    setPostsData(data?.data.data);
+    setPostsData(data?.data.posts);
+    console.log(data);
   }, [data]);
 
   if (isPending) return <Loader />;

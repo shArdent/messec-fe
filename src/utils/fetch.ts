@@ -6,12 +6,12 @@ export const getUserPost = (username: string) => {
 };
 
 export const getUserData = (username: string) => {
-  return axiosIntance.get(`/user/${username}`);
+  return axiosIntance.get(`/users/${username}`);
 };
 
 // add new post to a user
 export const postUserPost = (body: string) => {
-  return axiosIntance.post(`/posts`, { body });
+  return axiosIntance.post(`/posts/`, { body });
 };
 
 export const postComment = (payload: CommentReq) => {
@@ -44,6 +44,10 @@ export const deleteUserQuestion = (payload: { questionId: number }) => {
   return axiosIntance.delete(`/questions/${payload.questionId}`);
 };
 
-export const deleteUserAnswer = (payload : { answerId : number}) => {
-    return axiosIntance.delete(`/answers/${payload.answerId}`)
-}
+export const deleteUserAnswer = (payload: { answerId: number }) => {
+  return axiosIntance.delete(`/answers/${payload.answerId}`);
+};
+
+export const fetchUserByQuery = (query: string) => {
+  return axiosIntance.get(`/users?query=${query}`);
+};

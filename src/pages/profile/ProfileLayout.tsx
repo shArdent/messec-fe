@@ -2,9 +2,10 @@ import avatar from "@/assets/avatar.svg";
 import { useQuery } from "@tanstack/react-query";
 import { Link, NavLink, Outlet, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
-import Loader from "../../components/Loader";
+import Loader from "@/components/Loader";
 import ErrorPage from "../ErrorPage";
 import { useCurrentProfileStore } from "../../store";
+import SelectSearch from "@/components/SelectSearch";
 
 const ProfileLayout = () => {
   const updateProfileEmail = useCurrentProfileStore((state) => state.setEmail);
@@ -22,11 +23,16 @@ const ProfileLayout = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const userData = data?.data.data;
+  const options = [
+    { name: "Swedish", value: "sv" },
+    { name: "English", value: "en" },
+  ];
+
+  const userData = data?.data.user;
 
   if (userData) {
-    updateProfileUsername(userData?.Username ?? userData.Email);
-    updateProfileEmail(userData?.Email);
+    updateProfileUsername(userData?.username ?? userData.email);
+    updateProfileEmail(userData?.email);
   }
   if (isError || !userData) return <ErrorPage code={"404"} />;
 
@@ -34,26 +40,31 @@ const ProfileLayout = () => {
 
   return (
     <div className="w-full">
-      <div className="h-20 flex justify-center items-center bg-[#91a9ff]">
+      <div className="h-20 w-full justify-between flex px-3 md:px-10 items-center bg-[#91a9ff]">
         <Link
           to={`/profile/${currentUser}/post`}
           className="text-white font-bold text-2xl"
         >
           Secreto (boongan)
         </Link>
+        <SelectSearch
+          options={options}
+          search={true}
+          placeholder="Choose your language"
+        />
       </div>
       <div className="w-full flex px-3 md:px-10 flex-col gap-8 py-7">
         <div className="flex gap-7">
           <img src={avatar} alt="Avatar" width={100} />
           <div className="flex flex-col gap-2 py-2">
             <h1 className="text-xl font-semibold">
-              {userData?.Username ?? userData.Email}
+              {userData?.username ?? userData.email}
             </h1>
             <p className="text-[#686D76] text-sm font-light">
-              {userData.Bio ?? "-"}
+              {userData.bio ?? "-"}
             </p>
             <p className="text-[#686D76] text-sm font-light">
-              {userData.Email}
+              {userData.email}
             </p>
           </div>
         </div>

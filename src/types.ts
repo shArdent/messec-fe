@@ -2,17 +2,17 @@ import { FieldError, UseFormRegister } from "react-hook-form";
 import { z, ZodType } from "zod";
 
 export type comment = {
-  Id: number;
-  PostId: number;
-  Body: string;
-  CreatedAt: string;
+  id: number;
+  post_id: number;
+  body: string;
+  created_at: string;
 };
 
 export type post = {
-  Id: number;
-  Body: string;
-  CreatedAt: string;
-  Comments: comment[];
+  id: number;
+  body: string;
+  created_at: string;
+  comments: comment[];
 };
 
 export type FormFieldProps = {
@@ -40,19 +40,19 @@ export const UserSchema: ZodType<AuthFormData> = z.object({
 });
 
 export type CommentData = {
-  Body: string;
-  CreatedAt: string;
-  Id: number;
-  PostId: number;
-  UserId?: number;
+  body: string;
+  created_at: string;
+  id: number;
+  post_id: number;
+  user_id?: number;
 };
 
 export type PostData = {
-  PostBody: string;
-  PostCreatedAt: string;
-  PostId: number;
-  PostUserId: number;
-  Comments?: CommentData[];
+  body: string;
+  created_at: string;
+  id: number;
+  user_id: number;
+  comments?: CommentData[];
 };
 
 export type CommentReq = {
@@ -66,10 +66,10 @@ export type QuestionReq = {
 };
 
 export type AnswerRes = {
-  Id: number;
-  QuestionId: number;
-  AnswerBody: string;
-  CreatedAt: string;
+  id: number;
+  question_id: number;
+  body: string;
+  created_at: string;
 };
 
 export type AnswerReq = {
@@ -78,9 +78,9 @@ export type AnswerReq = {
 };
 
 export type QuestionRes = {
-  Id: number;
-  UserId: number;
-  Body: string;
-  CreatedAt: string;
-  Answer?: AnswerRes;
+  id: number;
+  user_id: number;
+  body: string;
+  created_at: string;
+  answer?: AnswerRes;
 };
