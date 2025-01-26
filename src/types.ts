@@ -20,9 +20,10 @@ export type FormFieldProps = {
   label: string;
   type: string;
   name: any;
-  register: UseFormRegister<AuthFormData>;
+  register: UseFormRegister<any>;
   error: FieldError | undefined;
   valueAsNumber?: boolean;
+  value?: string;
 };
 
 export type AuthFormData = {
@@ -37,6 +38,20 @@ export const UserSchema: ZodType<AuthFormData> = z.object({
   password: z
     .string({ required_error: "Tidak boleh kosong" })
     .min(8, { message: "Password terlalu pendek" }),
+});
+
+export type UpdateUserFormData = {
+  username: string | null;
+  name: string | null;
+  email: string;
+  bio: string | null;
+};
+
+export const UpdateUserSchema: ZodType<UpdateUserFormData> = z.object({
+  username: z.string().min(3, { message: "Minimal 3 karakter" }).nullable(),
+  name: z.string().nullable(),
+  email: z.string().email({ message: "Email anda tidak valid" }),
+  bio: z.string().nullable(),
 });
 
 export type CommentData = {

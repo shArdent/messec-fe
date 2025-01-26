@@ -49,5 +49,9 @@ export const deleteUserAnswer = (payload: { answerId: number }) => {
 };
 
 export const fetchUserByQuery = (query: string) => {
-  return axiosIntance.get(`/users?query=${query}`);
+  return axiosIntance.get(`/users/?query=${query}`);
+};
+
+export const updateUserData = (payload: any) => {
+  return axiosIntance.put("/users/", payload);
 };

@@ -24,20 +24,15 @@ const ProfileLayout = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const options = [
-    { name: "Swedish", value: "sv" },
-    { name: "English", value: "en" },
-  ];
-
   const userData: User = data?.data.user;
 
   if (userData) {
     updateProfileUsername(userData?.username ?? userData.email);
     updateProfileEmail(userData?.email);
   }
-  if (isError || !userData) return <ErrorPage code={"404"} />;
-
   if (isPending) return <Loader />;
+
+  if (isError) return <ErrorPage code={"404"} />;
 
   return (
     <div className="w-full">
@@ -48,11 +43,7 @@ const ProfileLayout = () => {
         >
           MeSecret
         </Link>
-        <SelectSearch
-          options={options}
-          search={true}
-          placeholder="Choose your language"
-        />
+        <SelectSearch />
       </div>
       <div className="w-full flex px-3 md:px-10 flex-col gap-7 py-7">
         <ProfileHeader userData={userData} />
