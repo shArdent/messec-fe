@@ -1,4 +1,3 @@
-import avatar from "@/assets/avatar.svg";
 import { useQuery } from "@tanstack/react-query";
 import { Link, NavLink, Outlet, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
@@ -6,6 +5,8 @@ import Loader from "@/components/Loader";
 import ErrorPage from "../ErrorPage";
 import { useCurrentProfileStore } from "../../store";
 import SelectSearch from "@/components/SelectSearch";
+import { User } from "../../types";
+import ProfileHeader from "../../components/ProfileHeader";
 
 const ProfileLayout = () => {
   const updateProfileEmail = useCurrentProfileStore((state) => state.setEmail);
@@ -28,7 +29,7 @@ const ProfileLayout = () => {
     { name: "English", value: "en" },
   ];
 
-  const userData = data?.data.user;
+  const userData: User = data?.data.user;
 
   if (userData) {
     updateProfileUsername(userData?.username ?? userData.email);
@@ -43,9 +44,9 @@ const ProfileLayout = () => {
       <div className="h-20 w-full justify-between flex px-3 md:px-10 items-center bg-[#91a9ff]">
         <Link
           to={`/profile/${currentUser}/post`}
-          className="text-white font-bold text-2xl"
+          className="text-white font-bold text-4xl"
         >
-          Secreto (boongan)
+          MeSecret
         </Link>
         <SelectSearch
           options={options}
@@ -53,21 +54,8 @@ const ProfileLayout = () => {
           placeholder="Choose your language"
         />
       </div>
-      <div className="w-full flex px-3 md:px-10 flex-col gap-8 py-7">
-        <div className="flex gap-7">
-          <img src={avatar} alt="Avatar" width={100} />
-          <div className="flex flex-col gap-2 py-2">
-            <h1 className="text-xl font-semibold">
-              {userData?.username ?? userData.email}
-            </h1>
-            <p className="text-[#686D76] text-sm font-light">
-              {userData.bio ?? "-"}
-            </p>
-            <p className="text-[#686D76] text-sm font-light">
-              {userData.email}
-            </p>
-          </div>
-        </div>
+      <div className="w-full flex px-3 md:px-10 flex-col gap-7 py-7">
+        <ProfileHeader userData={userData} />
 
         <div className="flex w-full justify-between items-center bg-[#BCCCDC] px-3 py-3 gap-2 rounded-lg">
           <NavLink

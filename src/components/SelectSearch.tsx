@@ -7,6 +7,7 @@ interface user {
   id: number;
   name: string;
   email: string;
+  username: string;
 }
 
 const SelectSearch = () => {
@@ -21,8 +22,6 @@ const SelectSearch = () => {
     }
 
     const { data } = await fetchUserByQuery(debouncedQuery);
-    console.log(data);
-
     setOptions(data.users);
   };
 
@@ -47,8 +46,8 @@ const SelectSearch = () => {
           options.map((option: user) => (
             <div className=" w-full p-2 h-auto" key={option.id}>
               <Link to={`/profile/${option.id}/post`}>
-                <h1>{option.name}</h1>
-                <h1>{option.email}</h1>
+                <h1>{option.username ? option.username : option.email}</h1>
+                <p className="text-xs text-gray-400">{option.email}</p>
               </Link>
             </div>
           ))}

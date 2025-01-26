@@ -84,3 +84,13 @@ export type QuestionRes = {
   created_at: string;
   answer?: AnswerRes;
 };
+
+export type User = {
+  id: number;
+  username?: string;
+  name?: string;
+  email: string;
+  bio?: string;
+  post_count: number;
+  question_count: number;
+};
