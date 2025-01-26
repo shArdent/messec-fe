@@ -17,8 +17,7 @@ const PostCardMenu = ({
   const mutation = useMutation({
     mutationFn: deleteUserPost,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["post", username] });
-      queryClient.invalidateQueries({ queryKey: ["username", username] });
+      queryClient.invalidateQueries({ queryKey: ["user", username] });
       setIsOpen(false);
     },
     onError: () => {

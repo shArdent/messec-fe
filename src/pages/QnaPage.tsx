@@ -14,7 +14,7 @@ const QnaPage = () => {
     null,
   );
   const { data, isError, isPending } = useQuery({
-    queryKey: ["question", username],
+    queryKey: ["user", username, "questions"],
     queryFn: () => getUserQuestions({ userId: username ?? "" }),
   });
 

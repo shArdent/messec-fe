@@ -17,7 +17,6 @@ const AnswerDeleteMenu = ({
   const mutation = useMutation({
     mutationFn: deleteUserAnswer,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["question", username] });
       queryClient.invalidateQueries({ queryKey: ["user", username] });
       setIsOpen(false);
     },

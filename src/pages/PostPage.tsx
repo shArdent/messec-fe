@@ -12,7 +12,7 @@ const PostPage = () => {
   const { isUserLogin, username } = useIsUserLogin();
   const [postsData, setPostsData] = useState<PostData[] | null>(null);
   const { data, isError, isPending } = useQuery({
-    queryKey: ["post", username],
+    queryKey: ["user", username, "post"],
     queryFn: () => getUserPost(username ?? ""),
   });
 

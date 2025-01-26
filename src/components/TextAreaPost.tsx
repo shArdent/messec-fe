@@ -1,7 +1,7 @@
 import plane from "@/assets/bluePlane.svg";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postUserPost } from "../utils/fetch";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useParams } from "react-router";
 import { useInputValidation } from "../hooks/UseInputValidation";
 
@@ -14,7 +14,7 @@ const TextAreaPost = ({ label }: { label: string }) => {
   const mutation = useMutation({
     mutationFn: postUserPost,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["post", username] });
+      queryClient.invalidateQueries({ queryKey: ["user", username] });
       resetInput(textRef);
     },
     onError: () => {
