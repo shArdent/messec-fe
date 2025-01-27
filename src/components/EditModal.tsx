@@ -119,14 +119,14 @@ const EditModal = ({ userData }: { userData: User }) => {
               type="submit"
               className="w-full py-2 bg-[#91A9FF] text-white font-semibold rounded"
             >
-              Ya
+              Edit data
             </button>
             <button
               type="button"
               className="w-full py-2 text-[#91A9FF] font-semibold rounded"
               onClick={() => setIsEditOpen(false)}
             >
-              Tidak
+              Batalkan
             </button>
           </div>
         </form>
