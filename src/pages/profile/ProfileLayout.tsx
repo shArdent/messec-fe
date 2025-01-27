@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, NavLink, Outlet, useParams } from "react-router";
+import { Link, NavLink, Outlet, useNavigate, useParams } from "react-router";
 import { getUserData } from "../../utils/fetch";
 import Loader from "@/components/Loader";
 import ErrorPage from "../ErrorPage";
@@ -7,12 +7,14 @@ import { useCurrentProfileStore } from "../../store";
 import SelectSearch from "@/components/SelectSearch";
 import { User } from "../../types";
 import ProfileHeader from "../../components/ProfileHeader";
+import { handleLogout } from "../../utils/auth";
 
 const ProfileLayout = () => {
   const updateProfileEmail = useCurrentProfileStore((state) => state.setEmail);
   const updateProfileUsername = useCurrentProfileStore(
     (state) => state.setUsername,
   );
+  const navigate = useNavigate();
   const { username } = useParams();
   const currentUser = sessionStorage.getItem("userId");
   const { data, isError, isPending } = useQuery({
@@ -43,7 +45,15 @@ const ProfileLayout = () => {
         >
           MeSecret
         </Link>
-        <SelectSearch />
+        <div className="flex gap-3">
+          <SelectSearch />
+          <button
+            className="px-3 rounded-lg text-rose-400 font-semibold bg-white"
+            onClick={() => handleLogout(navigate)}
+          >
+            Logout
+          </button>
+        </div>
       </div>
       <div className="w-full flex px-3 md:px-10 flex-col gap-7 py-7">
         <ProfileHeader userData={userData} />

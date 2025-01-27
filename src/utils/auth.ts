@@ -25,7 +25,6 @@ export const handleLogin = async (
   try {
     const { data } = await axiosIntance.post("/auth/login", payload);
 
-    sessionStorage.setItem("token", data.token);
     sessionStorage.setItem("userId", data.data.id);
     sessionStorage.setItem("email", data.data.email);
 
@@ -35,8 +34,9 @@ export const handleLogin = async (
   }
 };
 
-export const handleLogout = (navigate: (e: string) => void) => {
+export const handleLogout = async (navigate: (e: string) => void) => {
   sessionStorage.clear();
-  navigate("/login");
+  await axiosIntance.get("/auth/logout");
+  navigate("/auth/login");
   return;
 };
