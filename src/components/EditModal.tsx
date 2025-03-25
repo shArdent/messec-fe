@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import pennib from "@/assets/pen-nib.svg";
 import Modal from "./Modal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useIsUserLogin from "../hooks/useIsLogin";
+import useIsUserLogin from "../hooks/UseIsLogin";
 import { UpdateUserFormData, UpdateUserSchema, User } from "../types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

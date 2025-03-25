@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
-import useDebounce from "../hooks/useDebounce";
+import { useNavigate } from "react-router";
+import useDebounce from "../hooks/UseDebounce";
 import { fetchUserByQuery } from "../utils/fetch";
 
 interface user {

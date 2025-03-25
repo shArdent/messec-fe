@@ -1,6 +1,6 @@
 import { User } from "../types";
 import avatar from "@/assets/avatar.svg";
-import useIsUserLogin from "../hooks/useIsLogin";
+import useIsUserLogin from "../hooks/UseIsLogin";
 import EditModal from "./EditModal";
 
 const ProfileHeader = ({ userData }: { userData: User }) => {
